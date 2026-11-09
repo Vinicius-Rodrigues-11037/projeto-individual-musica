@@ -6,9 +6,9 @@
     --login-bg: #a9a5ea;
     --login-text: #3d5fb8;
     --card-bg: rgba(20, 20, 20, 0.88);
-    --titulo: #ff4fa8;
-    --subtitulo: #e8174f;
-    --texto: #c9c9f5;
+    --titulo: #ff50c4;
+    --subtitulo: #d81919;
+    --texto: #b1bdff;
 }
 
 * {
@@ -19,7 +19,6 @@
 
 body {
     font-family: "Montserrat", Arial, sans-serif;
-    background: #f2f2f2;
     color: var(--texto);
 }
 
@@ -84,18 +83,18 @@ nav a.login:hover {
 /* ---------- Seção principal ---------- */
 .imagem_fundo {
     min-height: calc(100vh - 56px);
-    padding: 15px 16px 60px;
+    padding: 15px 10% 15px 16px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    justify-content: flex-end;
+    align-items: center;
     background-color: #d9d9e8;
     background-image: url("img/fundo_dj.jpg");
     background-size: cover;
     background-position: center;
 }
 
-.conteudo {
-    width: 100%;
+.conteudo1 {
+    width: fit-content;
     max-width: 470px;
     background: var(--card-bg);
     border-radius: 24px;
@@ -107,7 +106,6 @@ nav a.login:hover {
     font-family: "Righteous", sans-serif;
     font-size: clamp(1.6rem, 5vw, 2.1rem);
     letter-spacing: 1px;
-    color: var(--titulo);
     margin-bottom: 8px;
 }
 
@@ -118,9 +116,13 @@ nav a.login:hover {
     padding-left: 12px;
     margin-bottom: 10px;
 }
+.conteudo h3 {
+    color: var(--texto);
+    font-size: 20px;
+}
 
 .conteudo p {
-    font-size: 0.82rem;
+    font-size: 60px;
     line-height: 1.5;
 }
 
@@ -152,6 +154,58 @@ nav a.login:hover {
 .botao:focus-visible {
     filter: brightness(1.1);
 }
+
+#div_home {
+    position: relative;
+    width: 1000px;
+    height: 200px;
+}
+
+.titulo_cor{
+    color: var(--titulo);
+}
+
+.titulo_home{
+    font-size: 75px;
+}
+
+.titulo_tamanho{
+    font-size: 50px;
+}
+
+
+/* ---------- Seção contexto ---------- */
+.imagem_fundo2 {
+    min-height: calc(100vh - 56px);
+    padding: 15px 16px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #d9d9e8;
+    background-image: url("img/fundo_azul.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+#div_contexto{
+    width: fit-content;
+    height:670px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.conteudo2 {
+    width: fit-content;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 22px;
+    text-align: center;
+}
+
+#texto{
+    font-size: 18px;
+}
+
 
 /* ---------- Sobre + rodapé ---------- */
 #sobre {
