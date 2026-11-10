@@ -173,6 +173,12 @@ nav a.login:hover {
     font-size: 50px;
 }
 
+.subtitulo{
+    color: var(--subtitulo);
+    font-size: 40px;
+    
+}
+
 
 /* ---------- Seção contexto ---------- */
 .imagem_fundo2 {
@@ -182,7 +188,7 @@ nav a.login:hover {
     justify-content: center;
     align-items: flex-start;
     background-color: #d9d9e8;
-    background-image: url("img/fundo_azul.jpg");
+    background-image: url("img/fundo_mario.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -206,7 +212,38 @@ nav a.login:hover {
     font-size: 18px;
 }
 
+/* ---------- Seção contexto ---------- */
+.imagem_fundo3 {
+    min-height: 400px;
+    max-height: 800px;
+    padding: 15px 16px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    background-color: #d9d9e8;
+    background-image: url("img/fundo_silent.jpg");
+    background-size: cover;
+    background-position: center;
+}
 
+#div_contexto{
+    width: fit-content;
+    height:670px;
+    padding: 30px;
+    margin: 20px;
+}
+
+.conteudo3 {
+    width: fit-content;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 22px;
+    text-align: center;
+}
+
+.texto_maior{
+    font-size: 20px;
+}
 /* ---------- Sobre + rodapé ---------- */
 #sobre {
     background: var(--header-bg);
