@@ -1,0 +1,177 @@
+:root {
+    --header-bg: #2b2b2b;
+    --link: #4a80d9;
+    --login-bg: #a9a5ea;
+    --login-text: #3d5fb8;
+    --card-bg: rgba(20, 20, 20, 0.88);
+    --titulo: #ff50c4;
+    --subtitulo: #d81919;
+    --texto: #b1bdff;
+}
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #f9f3e4;
+}
+
+/*Lado Esquerdo - Logo e Apresentação*/
+.lado-esquerdo {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f3e4;
+    padding: 40px;
+}
+
+.conteiner-logo {
+    text-align: center;
+}
+
+
+.imagem-logo {
+    width: 580px;
+    max-width: 95%;
+    height: auto;
+}
+
+
+/* Lado Direito - informções de login/cadastro*/
+.lado-direito {
+    flex: 1;
+    background-color: var(--header-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 80px;
+}
+
+h1 {
+    color: var(--titulo);
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+h2 {
+    color: var(--texto);
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+}
+
+.grupo-formulario {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.grupo-formulario label {
+    color: var(--texto);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.grupo-formulario input {
+    height: 30px;
+    background-color: #F7EFE3;
+    border: none;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 18px;
+    color: var(--titulo);
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.grupo-formulario input:focus {
+    background-color: #FFFFFF;
+}
+
+button {
+    height: 50px;
+    background-color: var(--texto);
+    color: var(--titulo);
+    border: none;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--texto);
+}
+
+/* Parte de login */
+.secao-cadastro {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.secao-cadastro label {
+    color: var(--titulo);
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 1px;
+}
+
+.secao-cadastro button {
+    width: 42%;
+}
+#toast {
+    display: fixed;
+    width: 40%;
+    padding: 15px;
+    margin-left: 70%;
+    background-color: var(--texto);
+    border-radius: 4px;
+    color: var(--header-bg);
+    
+}
+.show {
+    opacity: 0;
+    transform: translateX(20px); 
+    animation: surgirEsumir 5s ease-in-out forwards;
+}
+@keyframes surgirEsumir {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px); 
+  }
+}
+
+.hidden {
+    display: none;
+}
+.link-login{
+    color: var(--titulo);
+    align-items: center;
+    margin-left: 30%;
+}
