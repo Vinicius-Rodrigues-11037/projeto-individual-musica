@@ -88,7 +88,7 @@ nav a.login:hover {
     justify-content: flex-end;
     align-items: center;
     background-color: #d9d9e8;
-    background-image: url("../assets/img/fundo_dj.jpg");
+    background-image: url("../img/fundo_dj.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -188,7 +188,7 @@ nav a.login:hover {
     justify-content: center;
     align-items: flex-start;
     background-color: #d9d9e8;
-    background-image: url("../assets/img/fundo_mario.jpg");
+    background-image: url("../img/fundo_mario.jpg");
     background-size: cover;
     background-position: center;
 }
@@ -221,7 +221,7 @@ nav a.login:hover {
     justify-content: space-between;
     align-items: flex-start;
     align-content: center;
-    background-image: url("../assets/img/fundo_silent.jpg");
+    background-image: url("../img/fundo_silent.jpg");
     background-size: cover;
     background-position: center;
 }
