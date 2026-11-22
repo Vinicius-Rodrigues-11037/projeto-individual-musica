@@ -1,0 +1,271 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Righteous&display=swap");
+
+:root {
+    --header-bg: #2b2b2b;
+    --link: #4a80d9;
+    --login-bg: #a9a5ea;
+    --login-text: #3d5fb8;
+    --card-bg: rgba(20, 20, 20, 0.88);
+    --titulo: #ff50c4;
+    --subtitulo: #d81919;
+    --texto: #b1bdff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Montserrat", Arial, sans-serif;
+    color: var(--texto);
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+    background: var(--header-bg);
+    height: 56px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    height: 46px;   /* header tem 56px: sobram 5px em cima e embaixo */
+    width: auto;    /* mantém a proporção da logo */
+    display: block;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+nav a {
+    color: var(--link);
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    text-decoration: underline;
+}
+
+nav a.login {
+    background: var(--login-bg);
+    color: var(--login-text);
+    padding: 6px 0;
+    width: 100px;
+    text-align: center;
+    border-radius: 999px;
+    font-size: 13px;
+}
+
+nav a.login:hover {
+    text-decoration: none;
+    filter: brightness(1.08);
+}
+
+/* ---------- Seção principal ---------- */
+.imagem_fundo {
+    min-height: calc(100vh - 56px);
+    padding: 15px 10% 15px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #d9d9e8;
+    background-image: url("../img/fundo_formulario.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.conteudo1 {
+    width: fit-content;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 18px 22px 24px;
+    
+}
+
+.conteudo1 h1 {
+    font-family: "Righteous", sans-serif;
+    font-size: clamp(1.6rem, 5vw, 2.1rem);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+    align-items: center;
+    align-content: center;
+}
+
+.conteudo1 h2 {
+    font-size: 1.5rem;
+    color: var(--subtitulo);
+    text-align: left;
+    padding-left: 12px;
+    margin-bottom: 10px;
+}
+.conteudo1 h3 {
+    color: var(--texto);
+    font-size: 20px;
+}
+
+.conteudo1 p {
+    font-size: 60px;
+    line-height: 1.5;
+}
+
+.subtitulo {
+    margin-top: 4px;
+}
+
+.elementos {
+    margin-top: 22px;
+}
+
+.elementos p {
+    margin-bottom: 18px;
+}
+
+.botao {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 8px 24px;
+    border-radius: 999px;
+    background: var(--titulo);
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.botao:hover,
+.botao:focus-visible {
+    filter: brightness(1.1);
+}
+
+.titulo_cor{
+    color: var(--titulo);
+}
+
+.titulo_home{
+    font-size: 75px;
+    align-self: center;
+}
+
+.titulo_tamanho{
+    font-size: 50px;
+}
+
+.subtitulo{
+    color: var(--subtitulo);
+    font-size: 40px;
+    
+}
+
+
+.grupo-formulario {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+.grupo-formulario label {
+    color: var(--texto);
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.grupo-formulario input {
+    height: 30px;
+    background-color: #F7EFE3;
+    border: none;
+    border-radius: 4px;
+    padding: 0 15px;
+    font-size: 18px;
+    color: var(--titulo);
+    outline: none;
+    transition: background-color 0.2s;
+}
+
+.grupo-formulario input:focus {
+    background-color: #FFFFFF;
+}
+
+button {
+    height: 50px;
+    background-color: var(--texto);
+    color: var(--titulo);
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background-color: var(--texto);
+}
+
+/* ---------- Sobre + rodapé ---------- */
+#sobre {
+    background: var(--header-bg);
+    padding: 36px 20px;
+    text-align: center;
+}
+
+#sobre h2 {
+    color: var(--titulo);
+    margin-bottom: 10px;
+}
+
+#sobre p {
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+footer {
+    background: #1d1d1d;
+    padding: 16px;
+    text-align: center;
+    font-size: 0.8rem;
+}
+
+/* ---------- Telas pequenas ---------- */
+@media (max-width: 640px) {
+    header {
+        height: auto;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 14px;
+    }
+
+    .logo img {
+        height: 38px;
+    }
+
+    nav {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        font-size: 13px;
+    }
+}
