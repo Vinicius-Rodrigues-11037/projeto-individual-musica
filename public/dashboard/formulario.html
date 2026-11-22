@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/formulario.css"> 
+    <title>Playhear</title>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="../img/logo_site.png" alt="Playhear">
+        </div>
+
+        <nav>
+            <a href="formulario.html">Formulário</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="index.html" class="login">Sair</a>
+        </nav>
+    </header>
+    <!-- Seção inicial -->
+
+    <div class="imagem_fundo">
+
+        <div class="conteudo1">
+
+            <h1 class="titulo_cor titulo_home">Formulário</h1>
+
+            <div class="grupo-formulario">
+                <label for="ipt_jogo">Escreva um jogo:</label>
+                <input type="text" id="ipt_jogo" placeholder="Ex: Meu jogo favorito 2.X">
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="ipt_genero_jogo">Qual o gênero desse jogo?:</label>
+                <input type="text" id="ipt_genero_jogo" placeholder="Ex: RogueLike">
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="ipt_tempo_jogo">Por quanto tempo jogou esse jogo hoje?(em horas):</label>
+                <input type="text" id="ipt_tempo_jogo" placeholder="Ex: 3">
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="ipt_musica">Escreva uma musica:</label>
+                <input type="text" id="ipt_musica" placeholder="Ex: Minha musica favorita">
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="ipt_genero_musica">Qual o gênero dessa musica:</label>
+                <input type="text" id="ipt_genero_musica" placeholder="Ex: Pop">
+            </div>
+
+            <div class="grupo-formulario">
+                <label for="ipt_tempo_musica">Por quanto tempo ouviu essa musica?(em minutos):</label>
+                <input type="text" id="ipt_tempo_musica" placeholder="Ex: 2">
+            </div>
+
+            <button onclick="responder()" id="responder">Responder</button><br> 
+        </div>
+    </div>
+
+    <section id="sobre">
+        <h2>Sobre o projeto</h2>
+
+        <p>
+            Esse projeto NÃO possui fins lucrativos ou de divulgação,<br>
+            o playhear é apenas um projeto educacional feito para demonstrar minha paixão por trilhas sonoras de jogos
+        </p>
+    </section>
+
+    <footer>
+        <p>Música e Videogame © 2026</p>
+    </footer>
+
+</body>
+</html>
