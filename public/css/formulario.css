@@ -83,7 +83,7 @@ nav a.login:hover {
 /* ---------- Seção principal ---------- */
 .imagem_fundo {
     min-height: calc(100vh - 56px);
-    padding: 15px 10% 15px 16px;
+    padding: 15px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -106,8 +106,6 @@ nav a.login:hover {
     font-size: clamp(1.6rem, 5vw, 2.1rem);
     letter-spacing: 1px;
     margin-bottom: 8px;
-    align-items: center;
-    align-content: center;
 }
 
 .conteudo1 h2 {
@@ -175,18 +173,21 @@ nav a.login:hover {
     
 }
 
+.titulo_centro {
+    text-align: center;
+}
 
 .grupo-formulario {
     display: flex;
     flex-direction: column;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 }
 
 .grupo-formulario label {
     color: var(--texto);
     font-size: 20px;
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .grupo-formulario input {
@@ -213,6 +214,7 @@ button {
     padding: 10px;
     border-radius: 4px;
     font-size: 20px;
+    width: 600px;
     font-weight: 700;
     cursor: pointer;
     transition: background-color 0.2s;
