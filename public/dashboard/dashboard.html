@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Playhear | Dashboard</title>
+    <link rel="icon" type="image/png" href="../img/logo_site.png">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <div class="janela">
+
+        <!-- Barra lateral -->
+        <aside class="header-left">
+            <div>
+                <div class="logo">
+                    <img src="../img/logo_site.png" alt="Playhear">
+                </div>
+                <div class="hello">
+                    <h3>Oi, <span id="b_usuario">usuario</span></h3>
+                </div>
+            </div>
+
+            <div class="btn-logout" onclick="sair()">
+                <h3>Sair</h3>
+            </div>
+        </aside>
+
+        <!-- Conteúdo -->
+        <main class="dash">
+
+            <section class="kpis">
+                <div class="kpi">
+                    <h3>Tempo médio de jogo</h3>
+                    <p id="kpi_jogo">-</p>
+                </div>
+                <div class="kpi">
+                    <h3>Tempo médio de música</h3>
+                    <p id="kpi_musica">-</p>
+                </div>
+                <div class="kpi">
+                    <h3>Música mais ouvida</h3>
+                    <p id="kpi_top">-</p>
+                </div>
+            </section>
+
+            <section class="graficos">
+                <div class="card card-grande">
+                    <h2>Tempo de jogo de cada jogo</h2>
+                    <div class="area-grafico"><canvas id="grafico_jogos"></canvas></div>
+                </div>
+
+                <div class="card card-grande">
+                    <h2>Ranking das músicas mais ouvidas</h2>
+                    <div class="area-grafico"><canvas id="grafico_ranking"></canvas></div>
+                </div>
+
+                <div class="card card-pequeno">
+                    <h2>Gêneros de jogo que mais joga</h2>
+                    <div class="area-grafico"><canvas id="grafico_genero_jogo"></canvas></div>
+                </div>
+
+                <div class="card card-pequeno">
+                    <h2>Gêneros de música que mais escuta</h2>
+                    <div class="area-grafico"><canvas id="grafico_genero_musica"></canvas></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    // ---------- DADOS DE EXEMPLO ----------
+    // Troque estes valores pelos dados vindos do formulário/banco (fetch na sua API).
+    var jogos = { nomes: ['Minecraft', 'Zelda', 'Hollow Knight', 'Celeste'], horas: [3, 2, 4, 1.5] };
+    var musicas = { nomes: ['Música A', 'Música B', 'Música C', 'Música D'], minutos: [12, 30, 8, 20] };
+    var generosJogo = { nomes: ['RPG', 'Roguelike', 'Aventura', 'Plataforma'], total: [4, 3, 2, 1] };
+    var generosMusica = { nomes: ['Pop', 'Rock', 'Eletrônica', 'Trilha de jogo'], total: [5, 2, 2, 3] };
+
+    var LILAS = '#b1bdff';
+    var ROSA = '#ff50c4';
+    var ESCURO = '#2e2c2c';
+
+    // ---------- SESSÃO ----------
+    if (sessionStorage.NOME_USUARIO) {
+        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    }
+
+    function sair() {
+        sessionStorage.clear();
+        window.location = '../index.html';
+    }
+
+    // ---------- CARDS DE RESUMO ----------
+    function media(lista) {
+        var soma = 0;
+        for (var i = 0; i < lista.length; i++) {
+            soma += lista[i];
+        }
+        return soma / lista.length;
+    }
+
+    // ranking ordenado do maior para o menor
+    var ranking = musicas.nomes
+        .map(function (nome, i) { return { nome: nome, minutos: musicas.minutos[i] }; })
+        .sort(function (a, b) { return b.minutos - a.minutos; });
+
+    kpi_jogo.innerHTML = media(jogos.horas).toFixed(1) + ' h';
+    kpi_musica.innerHTML = media(musicas.minutos).toFixed(0) + ' min';
+    kpi_top.innerHTML = ranking[0].nome;
+
+    // ---------- GRÁFICOS ----------
+    Chart.defaults.color = ESCURO;
+    Chart.defaults.font.family = 'Montserrat, Arial, sans-serif';
+    Chart.defaults.font.weight = '600';
+
+    // barras: tempo de jogo por jogo
+    new Chart(document.getElementById('grafico_jogos'), {
+        type: 'bar',
+        data: {
+            labels: jogos.nomes,
+            datasets: [{ label: 'Horas', data: jogos.horas, backgroundColor: ROSA, borderRadius: 6 }]
+        },
+        options: {
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true, title: { display: true, text: 'horas' } } }
+        }
+    });
+
+    // ranking: barras horizontais ordenadas
+    new Chart(document.getElementById('grafico_ranking'), {
+        type: 'bar',
+        data: {
+            labels: ranking.map(function (r) { return r.nome; }),
+            datasets: [{ label: 'Minutos', data: ranking.map(function (r) { return r.minutos; }), backgroundColor: ESCURO, borderRadius: 6 }]
+        },
+        options: {
+            indexAxis: 'y',
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { x: { beginAtZero: true, title: { display: true, text: 'minutos' } } }
+        }
+    });
+
+    // semicírculos (rosquinha cortada ao meio)
+    function semicirculo(idCanvas, dados) {
+        new Chart(document.getElementById(idCanvas), {
+            type: 'doughnut',
+            data: {
+                labels: dados.nomes,
+                datasets: [{
+                    data: dados.total,
+                    backgroundColor: [ROSA, ESCURO, '#ffffff', '#7f8cff'],
+                    borderColor: LILAS,
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                rotation: -90,
+                circumference: 180,
+                cutout: '55%',
+                maintainAspectRatio: false,
+                plugins: { legend: { position: 'right' } }
+            }
+        });
+    }
+
+    semicirculo('grafico_genero_jogo', generosJogo);
+    semicirculo('grafico_genero_musica', generosMusica);
+</script>
