@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playhear - Login</title>
-    <link rel="icon" type="image/png" href="./assets/img/logo_site.png">
-    <link rel="stylesheet" href="css/login_e_cadastro.css">
+    <link rel="icon" type="image/png" href="./img/logo_site.png">
+    <link rel="stylesheet" href="./css/login_e_cadastro.css">
 </head>
 <body>
 
     <div class="lado-esquerdo">
         <div class="conteiner-logo">
-            <img class="imagem-logo" src="./assets/img/logo_site.png" alt="Playhear Logo">
+            <img class="imagem-logo" src="./img/logo_site.png" alt="Playhear Logo">
         </div>
     </div>
 
@@ -63,7 +63,7 @@
                 } else if (email == cadastro.email && senha == cadastro.senha ) {
                     toast.innerHTML = "Bem-vindo! Aguarde o redirecionamento para a próxima tela."
                     setTimeout(() => {
-                        window.location = "../dashboard/dashboard.html";
+                        window.location = "../dashboard/formulario.html";
                     }, "3000");
                 } else {
                     toast.innerHTML = "E-mail ou senha incorreta."
