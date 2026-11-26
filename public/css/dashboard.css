@@ -4,6 +4,11 @@
     --lilas: #b1bdff;
     --rosa: #ff50c4;
     --escuro: #2e2c2c;
+    --branco: #ffffff;
+    --header-bg: #2b2b2b;
+    --link: #4a80d9;
+    --login-bg: #a9a5ea;
+    --login-text: #3d5fb8;
 }
 
 * {
@@ -19,64 +24,77 @@ body {
 
 body {
     font-family: "Montserrat", Arial, sans-serif;
-    color: var(--rosa);
+    color: var(--branco);
 }
 
 .janela {
     min-height: 100%;
-}
-
-/* ---------- Barra lateral ---------- */
-.header-left {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 13%;
-    min-width: 110px;
-    height: 100%;
-    padding: 20px 10px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+}
+
+/* ---------- Cabeçalho ---------- */
+header {
+    background: var(--header-bg);
+    height: 56px;
+    padding: 0 20px;
+    display: flex;
     align-items: center;
-    background: var(--escuro);
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
     z-index: 10;
 }
 
+.logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
 .logo img {
+    height: 46px;
+    width: auto;
     display: block;
-    width: 100%;
-    max-width: 120px;
 }
 
-.hello h3 {
-    margin-top: 12px;
+nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+}
+
+nav a {
+    color: var(--link);
+    font-weight: 700;
     font-size: 15px;
+    text-decoration: none;
+}
+
+nav a:hover,
+nav a:focus-visible {
+    text-decoration: underline;
+}
+
+nav a.login {
+    background: var(--login-bg);
+    color: var(--login-text);
+    padding: 6px 0;
+    width: 100px;
     text-align: center;
+    border-radius: 999px;
+    font-size: 13px;
 }
 
-.btn-logout {
-    width: 80%;
-    padding: 10px 0;
-    border-radius: 20px;
-    background: var(--lilas);
-    text-align: center;
-    cursor: pointer;
-}
-
-.btn-logout h3 {
-    font-size: 16px;
-}
-
-.btn-logout:hover {
+nav a.login:hover {
+    text-decoration: none;
     filter: brightness(1.08);
 }
 
 /* ---------- Área principal ---------- */
 .dash {
-    width: 87%;
-    min-height: 100%;
-    margin-left: 13%;
+    flex: 1;
+    width: 100%;
     padding: 20px 3%;
     background-image: url("../img/fundo_dash.jpg");
     background-size: cover;
@@ -97,10 +115,12 @@ body {
     border-radius: 30px;
     background: var(--lilas);
     text-align: center;
+    filter: drop-shadow(7px 10px 4px #111111);
 }
 
 .kpi h3 {
     font-size: 15px;
+    text-shadow: 3px 2px 4px #111111;
 }
 
 .kpi p {
@@ -108,6 +128,14 @@ body {
     font-size: 26px;
     font-weight: 700;
     color: var(--escuro);
+}
+
+.kpi small {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--branco);
+    filter: drop-shadow(1px 1px 1px #111111);
 }
 
 .graficos {
@@ -122,6 +150,8 @@ body {
     padding: 20px;
     border-radius: 30px;
     background: var(--lilas);
+    filter: drop-shadow(7px 10px 4px #111111);
+    text-shadow: 3px 2px 4px #111111;
 }
 
 .card h2 {
@@ -145,13 +175,24 @@ body {
 
 /* ---------- Telas pequenas ---------- */
 @media (max-width: 900px) {
-    .header-left {
-        width: 20%;
+    header {
+        height: auto;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px 14px;
     }
 
-    .dash {
-        width: 80%;
-        margin-left: 20%;
+    .logo img {
+        height: 38px;
+    }
+
+    nav {
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    nav a {
+        font-size: 13px;
     }
 
     .kpis {
