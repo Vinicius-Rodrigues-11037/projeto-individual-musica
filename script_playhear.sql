@@ -21,7 +21,7 @@ nome VARCHAR (50) NOT NULL
 CREATE TABLE musica(
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR (50) NOT NULL,
-tempo DECIMAL NOT NULL, 
+tempo DECIMAL(7,1) NOT NULL, 
 fk_usuario INT NOT NULL,
 fk_genero_msc INT NOT NULL,
 CONSTRAINT fk_fk_usuario 
@@ -35,7 +35,7 @@ CONSTRAINT fk_fk_genero_msc
 CREATE TABLE jogo(
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR (50) NOT NULL,
-tempo INT NOT NULL,
+tempo DECIMAL(7,1) NOT NULL,
 fk_usuario INT NOT NULL,
 fk_genero_jogo INT NOT NULL,
 CONSTRAINT ckfk_usuario 
