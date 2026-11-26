@@ -54,21 +54,37 @@
                     toast.classList.add('hidden');
                 }, 5000);
             });
-        function entrar() {
-            const cadastro = JSON.parse(localStorage.getItem("dadosCadastro"))
-            let email = ipt_email.value;
-            let senha = ipt_senha.value;
-                if (email == '' || senha == '') {
-                 toast.innerHTML='Por favor, preencha todos os campos!';
-                } else if (email == cadastro.email && senha == cadastro.senha ) {
-                    toast.innerHTML = "Bem-vindo! Aguarde o redirecionamento para a próxima tela."
-                    setTimeout(() => {
-                        window.location = "./dashboard/formulario.html";
-                    }, "3000");
-                } else {
-                    toast.innerHTML = "E-mail ou senha incorreta."
-                }
+    function entrar() {
+    let email = ipt_email.value;
+    let senha = ipt_senha.value;
+
+    if (email == '' || senha == '') {
+        toast.innerHTML = 'Por favor, preencha todos os campos!';
+        return;
+    }
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ emailServer: email, senhaServer: senha })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(function (json) {
+                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    toast.innerHTML = "Bem-vindo! Aguarde o redirecionamento.";
+                    setTimeout(() => { window.location = "./dashboard/formulario.html"; }, 2000);
+                });
+            } else {
+                toast.innerHTML = "E-mail ou senha incorreta.";
             }
+        }).catch(function (erro) {
+            console.log(erro);
+            toast.innerHTML = "Erro ao conectar com o servidor.";
+        });
+    }
+        
         function irParaCadastro() {
             window.location.href = 'cadastro.html'; 
         }
