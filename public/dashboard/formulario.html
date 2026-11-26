@@ -29,7 +29,7 @@
 
             <div class="grupo-formulario">
                 <label for="ipt_jogo">Escreva um jogo:</label>
-                <input type="text" id="ipt_jogo" placeholder="Ex: Meu jogo favorito 2.X">
+                <input type="text" id="ipt_jogo" placeholder="Ex: Meu jogo favorito 2.X" maxlength="50">
             </div>
 
             <div class="grupo-formulario">
@@ -75,4 +75,43 @@
     </footer>
 
 </body>
+<script>
+    function enviar(rota, nome, tempo, genero) {
+        return fetch(`/${rota}/cadastrar`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                nomeServer: nome,
+                tempoServer: tempo,
+                idUsuarioServer: sessionStorage.ID_USUARIO,
+                generoServer: genero          // agora vai o texto, não o id
+            })
+        });
+    }
+
+    function responder() {
+        var jogo = ipt_jogo.value.trim();
+        var generoJogo = ipt_genero_jogo.value.trim();
+        var tempoJogo = ipt_tempo_jogo.value.replace(",", ".");
+        var musica = ipt_musica.value.trim();
+        var generoMusica = ipt_genero_musica.value.trim();
+        var tempoMusica = ipt_tempo_musica.value.replace(",", ".");
+
+        if (!jogo || !generoJogo || !musica || !generoMusica
+            || isNaN(tempoJogo) || tempoJogo == "" || isNaN(tempoMusica) || tempoMusica == "") {
+            alert("Preencha todos os campos corretamente.");
+            return;
+        }
+
+        enviar("jogo", jogo, tempoJogo, generoJogo).then(function (r) {
+            if (!r.ok) throw "Erro ao salvar o jogo";
+            return enviar("musica", musica, tempoMusica, generoMusica);
+        }).then(function (r) {
+            if (!r.ok) throw "Erro ao salvar a música";
+            alert("Respostas enviadas!");
+        }).catch(function (erro) {
+            alert(erro);
+        });
+    }
+</script>
 </html>
