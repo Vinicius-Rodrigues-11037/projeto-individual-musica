@@ -14,37 +14,36 @@
 
     <div class="janela">
 
-        <!-- Barra lateral -->
-        <aside class="header-left">
-            <div>
-                <div class="logo">
-                    <img src="../img/logo_site.png" alt="Playhear">
-                </div>
-                <div class="hello">
-                    <h3>Oi, <span id="b_usuario">usuario</span></h3>
-                </div>
+        <header>
+            <div class="logo">
+                <img src="../img/logo_site.png" alt="Playhear">
             </div>
 
-            <div class="btn-logout" onclick="sair()">
-                <h3>Sair</h3>
-            </div>
-        </aside>
+            <nav>
+                <a href="formulario.html">Formulário</a>
+                <a href="dashboard.html">Dashboard</a>
+                <a href="../index.html" class="login" onclick="sessionStorage.clear()">Sair</a>
+            </nav>
+        </header>
 
         <!-- Conteúdo -->
         <main class="dash">
 
             <section class="kpis">
                 <div class="kpi">
-                    <h3>Tempo médio de jogo</h3>
+                    <h3>Tempo total de jogo</h3>
                     <p id="kpi_jogo">-</p>
+                    <small id="kpi_jogo_txt"></small>
                 </div>
                 <div class="kpi">
-                    <h3>Tempo médio de música</h3>
+                    <h3>Tempo total de música</h3>
                     <p id="kpi_musica">-</p>
+                    <small id="kpi_musica_txt"></small>
                 </div>
                 <div class="kpi">
                     <h3>Música mais ouvida</h3>
                     <p id="kpi_top">-</p>
+                    <small id="kpi_top_txt"></small>
                 </div>
             </section>
 
@@ -73,107 +72,131 @@
         </main>
     </div>
 
+    <script>
+        var LILAS = '#b1bdff';
+        var ROSA = '#ff50c4';
+        var ESCURO = '#2e2c2c';
+
+        var idUsuario = sessionStorage.ID_USUARIO;
+
+        function buscar(rota) {
+            return fetch(`/${rota}/${idUsuario}`).then(function (r) {
+                if (!r.ok) throw 'Erro ao buscar ' + rota;
+                return r.json();
+            });
+        }
+
+        // o MySQL devolve SUM() como texto ("3.8"), por isso o Number()
+        function nomes(lista) { return lista.map(function (i) { return i.nome; }); }
+        function totais(lista) { return lista.map(function (i) { return Number(i.total); }); }
+
+        function soma(lista) {
+            var total = 0;
+            for (var i = 0; i < lista.length; i++) {
+                total += lista[i];
+            }
+            return total;
+        }
+
+        // troca o ponto pela vírgula (3.8 -> 3,8)
+        function formatar(numero, casas) {
+            return numero.toFixed(casas).replace('.', ',');
+        }
+
+        function semicirculo(idCanvas, lista) {
+            new Chart(document.getElementById(idCanvas), {
+                type: 'doughnut',
+                data: {
+                    labels: nomes(lista),
+                    datasets: [{
+                        data: totais(lista),
+                        backgroundColor: [ROSA, ESCURO, '#ffffff', '#7f8cff', '#ffa6e3', '#5a5757'],
+                        borderColor: LILAS,
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    rotation: -90,
+                    circumference: 180,
+                    cutout: '55%',
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'right' } }
+                }
+            });
+        }
+
+        function montarDashboard(jogos, generosJogo, musicas, generosMusica) {
+
+            // cards de resumo
+            var horasJogo = soma(totais(jogos));
+            var minutosMusica = soma(totais(musicas));
+
+            kpi_jogo.innerHTML = formatar(horasJogo, 1) + ' h';
+            kpi_jogo_txt.innerHTML = 'Isso equivale a ' + formatar(horasJogo / 24, 1) + ' dias';
+
+            kpi_musica.innerHTML = formatar(minutosMusica, 0) + ' min';
+            kpi_musica_txt.innerHTML = 'Isso equivale a ' + formatar(minutosMusica / 60, 1) + ' horas';
+
+            if (musicas.length > 0) {
+                var vezes = Number(musicas[0].vezes);
+                kpi_top.innerHTML = musicas[0].nome;
+                kpi_top_txt.innerHTML = 'Você ouviu ' + vezes + (vezes == 1 ? ' vez' : ' vezes');
+            }
+
+            Chart.defaults.color = ESCURO;
+            Chart.defaults.font.family = 'Montserrat, Arial, sans-serif';
+            Chart.defaults.font.weight = '600';
+
+            // barras: tempo por jogo
+            new Chart(document.getElementById('grafico_jogos'), {
+                type: 'bar',
+                data: {
+                    labels: nomes(jogos),
+                    datasets: [{ label: 'Horas', data: totais(jogos), backgroundColor: ROSA, borderRadius: 6 }]
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, title: { display: true, text: 'horas' } } }
+                }
+            });
+
+            // ranking: top 5 músicas
+            var top5 = musicas.slice(0, 5);
+            new Chart(document.getElementById('grafico_ranking'), {
+                type: 'bar',
+                data: {
+                    labels: nomes(top5),
+                    datasets: [{ label: 'Minutos', data: totais(top5), backgroundColor: ESCURO, borderRadius: 6 }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { beginAtZero: true, title: { display: true, text: 'minutos' } } }
+                }
+            });
+
+            semicirculo('grafico_genero_jogo', generosJogo);
+            semicirculo('grafico_genero_musica', generosMusica);
+        }
+
+        if (!idUsuario) {
+            window.location = '../login.html';   // sem login, volta para o login
+        } else {
+            Promise.all([
+                buscar('jogo/tempo-por-jogo'),
+                buscar('jogo/generos-mais-jogados'),
+                buscar('musica/ranking'),
+                buscar('musica/generos-mais-ouvidos')
+            ]).then(function (d) {
+                montarDashboard(d[0], d[1], d[2], d[3]);
+            }).catch(function (erro) {
+                console.log(erro);
+            });
+        }
+    </script>
+
 </body>
 
 </html>
-
-<script>
-    // ---------- DADOS DE EXEMPLO ----------
-    // Troque estes valores pelos dados vindos do formulário/banco (fetch na sua API).
-    var jogos = { nomes: ['Minecraft', 'Zelda', 'Hollow Knight', 'Celeste'], horas: [3, 2, 4, 1.5] };
-    var musicas = { nomes: ['Música A', 'Música B', 'Música C', 'Música D'], minutos: [12, 30, 8, 20] };
-    var generosJogo = { nomes: ['RPG', 'Roguelike', 'Aventura', 'Plataforma'], total: [4, 3, 2, 1] };
-    var generosMusica = { nomes: ['Pop', 'Rock', 'Eletrônica', 'Trilha de jogo'], total: [5, 2, 2, 3] };
-
-    var LILAS = '#b1bdff';
-    var ROSA = '#ff50c4';
-    var ESCURO = '#2e2c2c';
-
-    // ---------- SESSÃO ----------
-    if (sessionStorage.NOME_USUARIO) {
-        b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    }
-
-    function sair() {
-        sessionStorage.clear();
-        window.location = '../index.html';
-    }
-
-    // ---------- CARDS DE RESUMO ----------
-    function media(lista) {
-        var soma = 0;
-        for (var i = 0; i < lista.length; i++) {
-            soma += lista[i];
-        }
-        return soma / lista.length;
-    }
-
-    // ranking ordenado do maior para o menor
-    var ranking = musicas.nomes
-        .map(function (nome, i) { return { nome: nome, minutos: musicas.minutos[i] }; })
-        .sort(function (a, b) { return b.minutos - a.minutos; });
-
-    kpi_jogo.innerHTML = media(jogos.horas).toFixed(1) + ' h';
-    kpi_musica.innerHTML = media(musicas.minutos).toFixed(0) + ' min';
-    kpi_top.innerHTML = ranking[0].nome;
-
-    // ---------- GRÁFICOS ----------
-    Chart.defaults.color = ESCURO;
-    Chart.defaults.font.family = 'Montserrat, Arial, sans-serif';
-    Chart.defaults.font.weight = '600';
-
-    // barras: tempo de jogo por jogo
-    new Chart(document.getElementById('grafico_jogos'), {
-        type: 'bar',
-        data: {
-            labels: jogos.nomes,
-            datasets: [{ label: 'Horas', data: jogos.horas, backgroundColor: ROSA, borderRadius: 6 }]
-        },
-        options: {
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: { y: { beginAtZero: true, title: { display: true, text: 'horas' } } }
-        }
-    });
-
-    // ranking: barras horizontais ordenadas
-    new Chart(document.getElementById('grafico_ranking'), {
-        type: 'bar',
-        data: {
-            labels: ranking.map(function (r) { return r.nome; }),
-            datasets: [{ label: 'Minutos', data: ranking.map(function (r) { return r.minutos; }), backgroundColor: ESCURO, borderRadius: 6 }]
-        },
-        options: {
-            indexAxis: 'y',
-            maintainAspectRatio: false,
-            plugins: { legend: { display: false } },
-            scales: { x: { beginAtZero: true, title: { display: true, text: 'minutos' } } }
-        }
-    });
-
-    // semicírculos (rosquinha cortada ao meio)
-    function semicirculo(idCanvas, dados) {
-        new Chart(document.getElementById(idCanvas), {
-            type: 'doughnut',
-            data: {
-                labels: dados.nomes,
-                datasets: [{
-                    data: dados.total,
-                    backgroundColor: [ROSA, ESCURO, '#ffffff', '#7f8cff'],
-                    borderColor: LILAS,
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                rotation: -90,
-                circumference: 180,
-                cutout: '55%',
-                maintainAspectRatio: false,
-                plugins: { legend: { position: 'right' } }
-            }
-        });
-    }
-
-    semicirculo('grafico_genero_jogo', generosJogo);
-    semicirculo('grafico_genero_musica', generosMusica);
-</script>
