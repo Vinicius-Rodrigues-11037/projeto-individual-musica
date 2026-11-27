@@ -58,6 +58,7 @@
             </div>
 
             <button onclick="responder()" id="responder">Responder</button><br> 
+            <div id="toast" class="hidden show"></div>
         </div>
     </div>
 
@@ -108,7 +109,13 @@
             return enviar("musica", musica, tempoMusica, generoMusica);
         }).then(function (r) {
             if (!r.ok) throw "Erro ao salvar a música";
-            alert("Respostas enviadas!");
+            toast.innerHTML = "Respostas enviadas com sucesso!";
+            toast.classList.remove('hidden');
+            toast.classList.add('show');
+
+            setTimeout(function() {
+                toast.classList.add('hidden');
+            }, 3000);
         }).catch(function (erro) {
             alert(erro);
         });
