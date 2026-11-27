@@ -271,3 +271,43 @@ footer {
         font-size: 13px;
     }
 }
+
+/* ---------- Toast ou aviso ---------- */
+
+#toast {
+    display: fixed;
+    width: 40%;
+    padding: 15px;
+    margin-left: 70%;
+    background-color: var(--texto);
+    border-radius: 4px;
+    color: var(--header-bg);
+    
+}
+.show {
+    opacity: 0;
+    transform: translateX(20px); 
+    animation: surgirEsumir 5s ease-in-out forwards;
+}
+@keyframes surgirEsumir {
+  0% {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  15% {
+    opacity: 1;
+    transform: translateX(0); 
+  }
+  85% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(20px); 
+  }
+}
+
+.hidden {
+    display: none;
+}
