@@ -66,23 +66,39 @@
             function cadastrar() {
             let nome = ipt_nome.value
             let email = ipt_email.value
-            let senha = ipt_senha.value
             let conf_senha = ipt_conf_senha.value
-            
+            let senha = ipt_senha.value;
+            let msg = ``;
 
-            var cadastro = {
-                email: email,
-                senha: senha
-              }
+            let requisitos = ["Ter pelo menos 8 caracteres", "Possuir pelo menos uma letra"];
+            let atendidos = 0;
+
+            for (let i = 0; i < requisitos.length; i++) {
+
+                if (i == 0 && senha.length >= 8) {
+                    atendidos++;
+                }
+                else if (senha.toLowerCase() != senha.toUpperCase()) {
+                    atendidos++;
+                }   
+            }
+
+            if (atendidos < 2){
+                toast.innerHTML = `<span style="color: red;">Senha precisa atender aos 2 requisitos</span>`;
+            } 
+            else {
+                toast.innerHTML = `<span style="color: green;">Senha válida</span>`;
+            }
+
+            div_senha.innerHTML = `${msg}`;
+        
 
             if (nome == "" || email == "" ||  senha == "" || conf_senha == "" ) {
                 toast.innerHTML = 'Preencha os dados corretamente'
              
             }else if (senha != conf_senha) {
                 toast.innerHTML = 'As senhas não coincidem!';
-            } else if (senha.length < 8) {
-                toast.innerHTML = 'A senha precisa ter 8 ou mais caracteres'
-            } else {
+            }else {
                 fetch("/usuarios/cadastrar", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
