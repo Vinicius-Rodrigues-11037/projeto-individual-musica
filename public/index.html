@@ -14,17 +14,17 @@
         </div>
 
         <nav>
-            <a href="index.html">Início</a>
-            <a href="#apresentação">Apresentação</a>
+            <a href="#inicio">Início</a>
+            <a href="#eu">Sobre mim</a>
             <a href="#efeitos">Efeitos</a>
             <a href="#trilhas">Trilhas</a>
-            <a href="#formulario">Formulário</a>
+            <a href="#jogos">Jogos</a>
             <a href="login.html" class="login">Login</a>
         </nav>
     </header>
     <!-- Seção inicial -->
 
-    <div class="imagem_fundo">
+    <div class="imagem_fundo" id="inicio">
 
         <div class="conteudo1" id="div_home">
 
@@ -38,46 +38,36 @@
         </div>
     </div>
 
-    <!-- Seção apresentação -->
+    <!-- Seção Sobre Mim -->
 
-    <div class="imagem_fundo2" >
+    <div class="imagem_fundo2" id="eu" >
 
-        <div class="conteudo2" id="div_contexto">
+        <div class="conteudo2 texto" id="div_contexto" >
 
-            <h1 class="titulo_cor titulo_tamanho">Dupla inseparável </h1>
+            <h1 class="titulo_cor titulo_tamanho">Sobre mim </h1>
+            
 
-            <p id="texto">
-                <br>Você já parou para pensar como seria jogar seu jogo favorito sem música?<br>
-                Uma cena emocionante talvez não tivesse o mesmo impacto,<br>
-                um ambiente assustador poderia parecer menos ameaçador<br>
-                e uma grande batalha perderia parte de sua intensidade.<br><br>
+            <div class="sobre_conteudo">
 
-                Nos jogos eletrônicos, a música vai muito além de preencher o silêncio.<br>
-                Ela é responsável por criar atmosferas, transmitir sentimentos, aumentar a imersão e<br> influenciar diretamente a maneira como o jogador interpreta cada situação.<br>
-                Uma simples melodia pode transformar uma exploração tranquila em um momento de tensão<br>
-                ou tornar uma vitória ainda mais memorável.<br><br>
-
-                Desde os primeiros videogames, as trilhas sonoras acompanham a evolução da música.<br>
-                O que começou com pequenas melodias utilizadas como acompanhamento das partidas<br>
-                se transformou em composições elaboradas,<br>
-                capazes de contar histórias, representar personagens<br>
-                e até determinar o ritmo da jogabilidade.<br><br>
-
-                Atualmente, a música ocupa um papel tão importante<br>
-                que existem jogos construídos inteiramente em torno dela,<br>
-                nos quais o som não é apenas um complemento,<br>
-                mas a principal ferramenta de interação entre o jogador e o jogo.<br><br>
-
-                <b>Não é apenas o que vemos durante o jogo que nos marca, <br>
-                mas também aquilo que ouvimos.<b>
-                                
-            </p>
-
+                <img src="./img/eu_playhear.jpg" 
+                    alt="Minha foto" 
+                    class="imagem_sobre">
+                <p>
+                    <br>Esse projeto tem o propósito de verificar se obtive as competências técnicas para passar de semestre.<br><br>
+                    Sobre mim mesmo, desde criança eu tenho uma paixão por jogos e uma das coisas que eu mais aprecio até hoje é a trilha sonora,
+                    o jeito que a música me encanta, aterroriza, acalma e agita, tudo isso faz meu amor por jogos e música aumentar cada vez mais,
+                    e com esse projeto, quero mostrar como e porque eu gosto tanto disso, além de algumas recomendações, 
+                    a musica me afeta de um jeito, e talvez, para você seja e possa ser diferente, mas o que importa é abraçar isso e aproveitar,
+                    sem pensar realmente em qualidade, mas como te afeta e o que significa para você, conforme fui crescendo, 
+                    ouvir certas músicas me causam uma nostalgia, um momento que vivi, uma fase que passou, uma pessoa importante, um sentimento esquecido e muito mais,
+                    espero ,de coração, que com esse projeto você possa cultivar da mesma paixão que eu tenho.
+                </p>
+            </div>
         </div>
     </div>
     
     <!-- Seção efeitos -->
-    <div class="imagem_fundo3">
+    <div class="imagem_fundo3" id="efeitos">
 
         <!-- Conteúdo Imersão -->
         <div class="conteudo3" >
@@ -139,33 +129,90 @@
 
     <!-- Seção trilhas sonoras -->
 
-    <div class="imagem_fundo">
+    <div class="imagem_fundo4" id="trilhas">
 
-        <div class="conteudo1" id="div_home">
+        <!-- Lista de trilhas favoritas -->
+        <div class="conteudo4">
 
-            <h1 class="titulo_cor titulo_home">Playhear</h1>
+            <h2 class="titulo_cor titulo_trilhas">Minhas trilhas sonoras favoritas</h2>
 
-            <p class="subtitulo" >
-                <h3>Como a música muda a sensação e<br>
-                    forma de jogar os jogos</h3>
+            <ul class="lista_trilhas">
+                <!-- data-capa = imagem da capa do álbum | data-link = link da música no YouTube -->
+                <li><button type="button" class="faixa" data-capa="./img/album_fueled.jpeg" data-link="https://www.youtube.com/watch?v=KU7EMxPUJQY">Fueled ignition - Virgo vs The Zodiac</button></li>
+                <li><button type="button" class="faixa" data-capa="./img/album_heart.jpeg" data-link="https://www.youtube.com/watch?v=P3ue1JPFXEU">Heartbeat, Heartbreak - Persona 4</button></li>
+                <li><button type="button" class="faixa" data-capa="./img/album_trapped.webp" data-link="https://www.youtube.com/watch?v=jZ2ZV6UVxR0">Trapped - Identity V</button></li>
+                <li><button type="button" class="faixa" data-capa="./img/album_matilda.jpg" data-link="https://www.youtube.com/watch?v=z1kuHovIk58&list=RDz1kuHovIk58&start_radio=1">Matilda (Aquarium Boss) - Sorry We're Closed</button></li>
+                <li><button type="button" class="faixa" data-capa="./img/album_danganronpa.jpeg" data-link="https://www.youtube.com/watch?v=V61l6A3_6uA&list=PLXqQ-6GuEjYEiay4huXC4dvokFmleQe_a&index=1">Trigger Happy Havoc - Danganronpa</button></li>
+            </ul>
+
+        </div>
+
+        <!-- Jogo em destaque -->
+        <div class="conteudo4 jogo_destaque">
+
+            <h1 class="titulo_cor titulo_jogo" id="faixa_titulo">Fueled ignition - Elektrobear</h1>
+
+            <p class="legenda_album">
+                <a class="faixa_link" href="https://www.youtube.com/watch?v=KU7EMxPUJQY" target="_blank" rel="noopener">▶ Ouvir no YouTube</a>
+            </p>
+
+            <a class="link_album faixa_link" href="https://www.youtube.com/watch?v=KU7EMxPUJQY" target="_blank" rel="noopener">
+                <img id="faixa_capa" src="./img/album_fueled.jpeg" alt="Capa do álbum de Fueled ignition - Elektrobear">
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Seção jogos favoritos -->
+    <section class="imagem_fundo5" id="jogos">
+
+        <!-- Lista de jogos favoritos -->
+        <div class="conteudo4">
+
+            <h2 class="titulo_cor titulo_trilhas">Meus jogos favoritos</h2>
+
+            <ul class="lista_trilhas lista_jogos">
+                <!-- data-descricao = texto exibido no card ao lado -->
+                <li><button type="button" class="jogo" data-descricao="Nine Sols é um soulslike sobre um gato que quer retomar o poder de uma estação espacial. 'Esse jogo tem uma história muito emocionante e uma gameplay extremamente satisfatória. Lembro de chegar da escola, jogar por horas e tentar derrotar o mesmo boss. No final, valeu a pena.'">Nine Sols</button></li>
+                <li><button type="button" class="jogo" data-descricao="Rhyth Doctor é um jogo que você trabalha em um hospital com tratamento rítmico em que se aperta apenas 1 botão no ritmo certo. 'Esse jogo parece fácil no começo, mas a cada música ele fica cada vez mais emocionante e viciante, cada música e história por trás são tão bem feitos que tenho vontade de jogar todos os dias só pelo sentimento de viver tudo de novo.'">Rhythm Doctor</button></li>
+                <li><button type="button" class="jogo" data-descricao="Darkest Dungeon é um RPG com gerenciamento de recursos extremamente punitivo e difícil sobre um homem que tenta reconstruir sua cidade natal enviando pessoas para masmorras mortais. 'Esse jogo te pune pelo menor dos erros e falta de atenção, essa dificuldade é o que me atrai, o que me faz pensar estratégicamente para derrotar meus inimigos e conseguir recontronstruir a cidade'">Darkest Dungeon</button></li>
+                <li><button type="button" class="jogo" data-descricao="Dead by Daylight é um jogo terror multiplayer assimétrico 1vs4 em que o assassino deve capturar os sobreviventes e eles devem escapar arrumando geradores. 'Esse jogo é estratégico, aterrorizante e divertido ao mesmo tempo, lembro de jogar com meus amigos e ficarmos montando estratégias para zoar com o assassino para morrer no final.'">Dead by Daylight</button></li>
+                <li><button type="button" class="jogo" data-descricao="The Binding of Isaac é um roguelike de uma criança que se esconde em um porão da sua mãe que tenta sacrificar a crainça, dentro desse porão ele tenta sobreviver as atrocidades que vive la. 'Cada vez que eu jogo uma partida eu monto uma estratégia diferente e única, pois cada jogatina o jogo organiza de um jeito diferente, itens diferentes, inimigos diferentes e etc jogar 1000horas não chega nem perto de completar o jogo '">The Binding of Isaac</button></li>
+            </ul>
+
+        </div>
+
+        <!-- Descrição do jogo selecionado -->
+        <div class="conteudo4 jogo_destaque card_descricao">
+
+            <h1 class="titulo_cor titulo_jogo" id="jogo_titulo">Nine Sols</h1>
+
+            <p class="descricao_jogo" id="jogo_descricao">
+                Nine Sols é um soulslike sobre um gato que quer retomar o poder de uma estação espacial.
+                Esse jogo tem uma história muito emocionante e uma gameplay extremamente satisfatória.
             </p>
 
         </div>
-    </div>
+
+    </section>
 
     <section id="sobre">
         <h2>Sobre o projeto</h2>
 
         <p>
-            Explore a relação entre a música e o universo
-            dos videogames, conhecendo suas histórias,
-            características e influências.
+            Projeto acadêmemico sem fins lucrativos ou divulgacionais,<br>
+             esse projeto serve para demonstrar as competências técnicas do criador e sua paixão por jogos e musica
         </p>
     </section>
 
     <footer>
-        <p>Música e Videogame © 2026</p>
+        <p>Playhear</p>
     </footer>
 
+
+
 </body>
+<script src="./js/index.js"></script>
+<script src="./js/jogos.js"></script>
 </html>
