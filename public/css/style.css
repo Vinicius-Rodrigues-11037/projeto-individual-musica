@@ -11,6 +11,10 @@
     --texto: #b1bdff;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -18,7 +22,7 @@
 }
 
 body {
-    font-family: "Montserrat", Arial, sans-serif;
+    font-family: "Horizon", Arial, sans-serif;
     color: var(--texto);
 }
 
@@ -92,6 +96,7 @@ nav a.login:hover {
     background-size: cover;
     background-position: center;
 }
+
 
 .conteudo1 {
     width: fit-content;
@@ -188,7 +193,7 @@ nav a.login:hover {
     justify-content: center;
     align-items: flex-start;
     background-color: #d9d9e8;
-    background-image: url("../img/fundo_mario.jpg");
+    background-image: url("../img/fundo_riders.png");
     background-size: cover;
     background-position: center;
 }
@@ -208,8 +213,29 @@ nav a.login:hover {
     text-align: center;
 }
 
-#texto{
-    font-size: 18px;
+.texto{
+    font-size: 19px;
+}
+
+.sobre_conteudo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.imagem_sobre {
+    width: 300px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    flex-shrink: 0;
+}
+
+.sobre_conteudo p {
+    flex: 1;
+    text-align: justify;
+    line-height: 1.6;
 }
 
 /* ---------- Seção contexto ---------- */
@@ -242,29 +268,243 @@ nav a.login:hover {
 .texto_efeito{
     font-size: 14px;
 }
-/* ---------- Sobre + rodapé ---------- */
-#sobre {
-    background: var(--header-bg);
-    padding: 36px 20px;
-    text-align: center;
+/* ---------- Seção trilhas sonoras ---------- */
+.imagem_fundo4 {
+    min-height: calc(100vh - 56px);
+    padding: 40px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    background-color: #d9d9e8;
+    background-image: url("../img/fundo_sonic.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
-#sobre h2 {
-    color: var(--titulo);
+.conteudo4 {
+    width: 360px;
+    background: var(--card-bg);
+    border-radius: 24px;
+    padding: 20px;
+}
+
+.titulo_trilhas {
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
-#sobre p {
-    max-width: 560px;
-    margin: 0 auto;
-    line-height: 1.6;
+.lista_trilhas {
+    list-style: none;
+    height: calc(100% - 40px);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 0 10px;
 }
 
-footer {
-    background: #1d1d1d;
-    padding: 16px;
+.lista_trilhas li {
+    font-size: 16px;
+    color: var(--texto);
+}
+
+.faixa,
+.jogo {
+    width: 100%;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 12px;
+    background: transparent;
+    color: var(--texto);
+    font: inherit;
+    font-size: 16px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.faixa:hover,
+.faixa:focus-visible,
+.jogo:hover,
+.jogo:focus-visible {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.faixa.ativa,
+.jogo.ativa {
+    background: rgba(255, 80, 196, 0.22);
+    color: var(--titulo);
+    font-weight: 700;
+}
+
+.legenda_album a {
+    color: var(--titulo);
+    text-decoration: none;
+}
+
+.legenda_album a:hover,
+.legenda_album a:focus-visible {
+    text-decoration: underline;
+}
+
+.jogo_destaque {
     text-align: center;
-    font-size: 0.8rem;
+}
+
+.titulo_jogo {
+    font-size: 32px;
+    line-height: 1.3;
+    margin-bottom: 12px;
+}
+
+.legenda_album {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 14px;
+}
+
+.link_album {
+    display: block;
+}
+
+.link_album img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.link_album:hover img,
+.link_album:focus-visible img {
+    filter: brightness(1.1);
+}
+
+@media (max-width: 800px) {
+    .imagem_fundo4 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .conteudo4 {
+        width: 100%;
+        max-width: 360px;
+    }
+
+    .lista_trilhas {
+        height: auto;
+        gap: 22px;
+        padding-top: 10px;
+    }
+}
+
+/* ---------- Seção jogos favoritos ---------- */
+.imagem_fundo5 {
+    min-height: calc(100vh - 56px);
+    padding: 40px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    background-color: #d9d9e8;
+    background-image: url("../img/fundo_praia.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.imagem_fundo5 .conteudo4 {
+    width: 360px;
+    min-height: 420px;
+}
+
+.lista_jogos {
+    justify-content: space-around;
+}
+
+.lista_jogos .jogo {
+    text-align: left;
+}
+
+.card_descricao {
+    display: flex;
+    flex-direction: column;
+}
+
+.descricao_jogo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    line-height: 1.6;
+    padding: 12px 10px;
+}
+
+
+
+
+
+
+/* ---------- Ajustes da seção jogos favoritos ---------- */
+.imagem_fundo5 {
+    min-height: calc(100vh - 56px);
+    padding: 40px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 32px;
+    background-color: #d9d9e8;
+    background-image: url("../img/fundo_praia.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.imagem_fundo5 .conteudo4 {
+    width: 360px;
+    min-height: 420px;
+}
+
+.lista_jogos {
+    justify-content: space-around;
+}
+
+.lista_jogos .jogo {
+    text-align: left;
+}
+
+.card_descricao {
+    display: flex;
+    flex-direction: column;
+}
+
+.descricao_jogo {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    line-height: 1.6;
+    padding: 12px 10px;
+}
+
+@media (max-width: 800px) {
+    .imagem_fundo5 {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .imagem_fundo5 .conteudo4 {
+        width: 100%;
+        max-width: 360px;
+        min-height: 320px;
+    }
+
+    .imagem_fundo5 .lista_trilhas {
+        height: auto;
+        gap: 16px;
+        padding-top: 10px;
+    }
 }
 
 /* ---------- Telas pequenas ---------- */
@@ -288,4 +528,29 @@ footer {
     nav a {
         font-size: 13px;
     }
+}
+
+/* ---------- Sobre + rodapé ---------- */
+#sobre {
+    background: var(--header-bg);
+    padding: 36px 20px;
+    text-align: center;
+}
+
+#sobre h2 {
+    color: var(--titulo);
+    margin-bottom: 10px;
+}
+
+#sobre p {
+    max-width: 560px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+footer {
+    background: #1d1d1d;
+    padding: 16px;
+    text-align: center;
+    font-size: 0.8rem;
 }
