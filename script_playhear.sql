@@ -4,7 +4,7 @@ USE playhear;
 CREATE TABLE usuario(
 id INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR (50) NOT NULL,
-email VARCHAR (50) NOT NULL,
+email VARCHAR (50) NOT NULL UNIQUE,
 senha VARCHAR (20) NOT NULL
 );
 
@@ -172,3 +172,10 @@ FROM musica m
 		ON m.fk_usuario = u.id
 GROUP BY u.nome, g.nome
 ORDER BY u.nome, COUNT(m.id) DESC;
+
+CREATE USER 'playhear_insert'@'%' IDENTIFIED BY 'senha123';
+
+GRANT INSERT ON playhear.* TO 'playhear_insert'@'%';
+GRANT SELECT ON playhear.* TO 'playhear_insert'@'%';
+
+FLUSH PRIVILEGES;
